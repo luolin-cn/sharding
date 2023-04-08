@@ -5,9 +5,12 @@ import cn.hutool.json.JSONUtil;
 import com.lin.sharding.domain.entity.Order;
 import com.lin.sharding.infra.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/test")
@@ -26,5 +29,10 @@ public class TestController {
             orderMapper.insert(order);
         }
         return "success";
+    }
+
+    @GetMapping("/query")
+    public List<Order> query(Order order){
+        return orderMapper.select(order);
     }
 }
