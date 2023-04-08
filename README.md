@@ -1,2 +1,4 @@
 # sharding
 整合实际企业使用场景中通过shardingsphere进行分库分表操作
+
+inline主要实现通过sharding-jdbc的inline进行分库分表操作
