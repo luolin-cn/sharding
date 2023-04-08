@@ -26,5 +26,6 @@
                 and order_id <![CDATA[ <= ]]>  #{orderIdEnd}
             </if>
         </where>
+        order by order_id desc
     </select>
 </mapper>

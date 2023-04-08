@@ -38,14 +38,16 @@ spring:
           actualDataNodes: ds$->{0..1}.t_order_$->{0..1} # 映射节点
           # 分库策略
           databaseStrategy:
-            inline:
+            standard:
               sharding-column: order_id # 生成的sharding-column需要再sql执行的时候有值，否则执行不成功，但是在
-              algorithm-expression: ds$->{order_id % 2} # []
+              preciseAlgorithmClassName: com.lin.sharding.infra.algorithm.MyDsPreciseAlgorithm #精确分片算法类名称，用于=和IN。。该类需实现PreciseShardingAlgorithm接口并提供无参数的构造器
+              rangeAlgorithmClassName: com.lin.sharding.infra.algorithm.MyDsRangeAlgorithm #范围分片算法类名称，用于BETWEEN，可选。。该类需实现RangeShardingAlgorithm接口并提供无参数的构造器
           # 分表策略
           tableStrategy:
-            inline:
-              sharding-column: order_id
-              algorithm-expression: t_order_$->{order_id % 2} #[t_order_]需要与实际的表名前缀一致，否则会执行不进去
+            standard:
+              sharding-column: order_id # 生成的sharding-column需要再sql执行的时候有值，否则执行不成功，但是在
+              preciseAlgorithmClassName: com.lin.sharding.infra.algorithm.MyTablePreciseAlgorithm #精确分片算法类名称，用于=和IN。。该类需实现PreciseShardingAlgorithm接口并提供无参数的构造器
+              rangeAlgorithmClassName: com.lin.sharding.infra.algorithm.MyTableRangeAlgorithm #范围分片算法类名称，用于BETWEEN，可选。。该类需实现RangeShardingAlgorithm接口并提供无参数的构造器
 
 mybatis:
   mapper-locations:
