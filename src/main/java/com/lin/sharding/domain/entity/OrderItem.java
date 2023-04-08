@@ -13,5 +13,5 @@ public class OrderItem {
     int orderItemId;
     int orderId;
     int userId;
-    String name;
+    String item;
 }
