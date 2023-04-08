@@ -3,6 +3,8 @@
 
 inline主要实现通过sharding-jdbc的inline进行分库分表操作
 
+
+建表语句：
 ```sql
 drop table t_order;
 drop table t_order_0;
