@@ -8,4 +8,6 @@ import java.util.List;
 @Data
 public class OrderDTO extends Order {
     List<Long> orderIdList;
+    Long orderIdStart;
+    Long orderIdEnd;
 }

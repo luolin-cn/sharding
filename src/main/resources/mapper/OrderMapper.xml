@@ -18,6 +18,13 @@
                     #{orderIdItem}
                 </foreach>
             </if>
+            <!-- inline策略不支持范围查询 -->
+            <if test="orderIdStart != null">
+                and order_id <![CDATA[ >= ]]> #{orderIdStart}
+            </if>
+            <if test="orderIdEnd != null">
+                and order_id <![CDATA[ <= ]]>  #{orderIdEnd}
+            </if>
         </where>
     </select>
 </mapper>
